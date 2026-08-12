@@ -1,10 +1,24 @@
 [
   {
-    "title": "A large ongoing research project",
-    "description": "A multi-year effort to understand an important phenomenon using new data sources and methods."
+    "title": "Media Bias Measures Index",
+    "collaborators": "Collaborator: Sol Nottage",
+    "description": "At the Summer Institute in Computational Social Science (SICSS-Stanford), we are developing an index of news media bias indicators for English and Spanish corpora - the goal is a program that automates the evaluation of bias in news coverage. This project started in the hopes of making computational methods more permeable and accessible for social scientists."
   },
   {
-    "title": "A second project in early stages",
-    "description": "An exploratory collaboration investigating a promising new direction."
+    "title": "Motivated Reframing Study",
+    "collaborators": "Principal Investigators: Thomas Nelson and Sunny Yang",
+    "description": "Many scholars suggest that people reject information that conflicts with their political beliefs by dismissing it. We propose a different explanation - rather than simply rejecting inconvenient information, people may accept it while changing their framing of the issue, allowing them to preserve the broader belief that was challenged."
+  },
+  {
+    "title": "The human cost of machine algorithms",
+    "quote": {
+      "text": "Once, a scientist in Britain asked: Can machines think? He built a machine, taught it to read ghosts, and a new kind of ghost was born.",
+      "attribution": "Franny Choi, Soft Science"
+    },
+    "description": "Social media algorithms parse through human suffering every single day. They store evidence of atrocities and human rights violations. They distill lived experience into categories and items: metadata and probabilistic signals, mechanisms for predicting topic visibility, ranking, and circulation. In a way, algorithms have taken on a life of their own. In Choi’s world, they are ghosts that make ghosts of other people, that leave ghosts behind them."
+  },
+  {
+    "title": "News Media and the Production of Elite Status in America",
+    "description": "The following study examines how American news media constitutes elite status through the structure and content of coverage. Drawing on a corpus of news articles from twelve news outlets spanning 2016–2026, I construct a two-mode network connecting elite actors to news organizations. Using named entity recognition, sentiment analysis, and stance detection, I map which elites get covered, how they are framed, and whether ideological outlet identity shapes both. The results speak to a broader theoretical argument in news media analysis that news visibility does not only reflect status but actively reproduces it."
   }
 ]

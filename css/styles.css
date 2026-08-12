@@ -1,30 +1,27 @@
 /* ==========================================================================
-   Minimal, presentable defaults for the academic website template.
-   The setup-site skill is expected to restyle this file from the user's
-   design references — treat everything here as a starting point.
+   Danielle Shariff — academic website styles.
+   Typography/formatting follows matthewdeverna.com (Red Hat Text, modest
+   heading sizes, flat border-divided entry lists); the Education section
+   borrows anthonycusi.github.io's two-column date/degree card layout.
+   Multi-page site (About, Ongoing Projects, Presentations, Publications, CV)
+   sharing a single header/nav/footer, rendered from data/*.json.
    ========================================================================== */
 
 :root {
-  --color-text: #1f2328;
-  --color-text-muted: #59636e;
-  --color-accent: #0b57d0;
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f6f8fa;
-  --color-border: #d9dee3;
-  --max-width: 46rem;
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-text: #e6edf3;
-    --color-text-muted: #9198a1;
-    --color-accent: #6ea8fe;
-    --color-bg: #0d1117;
-    --color-bg-subtle: #161b22;
-    --color-border: #30363d;
-  }
+  --color-text: #2b2b2b;
+  --color-text-muted: #6b6b6b;
+  --color-highlight: #111111;
+  --color-accent: #698b69;
+  --color-accent-hover: #4b654b;
+  --color-bg: #fafaf8;
+  --color-bg-subtle: #eef2ee;
+  --color-border: #d7dbd7;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 0.9375rem;
+  --font-size-heading: 1.0625rem;
+  --max-width: 45rem;
+  --font-body: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
 }
 
 * {
@@ -34,8 +31,8 @@
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--font-size-base);
+  line-height: 1.65;
   color: var(--color-text);
   background: var(--color-bg);
 }
@@ -46,18 +43,50 @@ a {
 }
 
 a:hover {
+  color: var(--color-accent-hover);
   text-decoration: underline;
 }
 
+h1, h2, h3 {
+  font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
+
+h1, h3 {
+  color: var(--color-highlight);
+}
+
 h2 {
-  font-size: 1.4rem;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.35rem;
-  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0 0 1.75rem;
 }
 
 img {
   max-width: 100%;
+}
+
+/* Own-name highlight in author lists, borrowed from matthewdeverna.com:
+   wrap the name in <code class="accent"> to switch to the monospace font. */
+.accent {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.button {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--color-accent-hover);
+  color: #fff;
+  text-decoration: none;
 }
 
 /* --- Header / nav ------------------------------------------------------- */
@@ -73,24 +102,31 @@ img {
 .site-nav {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.6rem 1rem;
+  padding: 1.1rem 1.25rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  gap: 0.5rem 1.25rem;
 }
 
 .nav-name {
   font-weight: 700;
-  color: var(--color-text);
+  font-size: 1rem;
+  color: var(--color-highlight);
   margin-right: auto;
+  white-space: nowrap;
+}
+
+.nav-name:hover {
+  color: var(--color-accent);
+  text-decoration: none;
 }
 
 .nav-toggle {
   display: none;
   background: none;
   border: 1px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 6px;
   color: var(--color-text);
   font-size: 1.1rem;
   padding: 0.15rem 0.5rem;
@@ -101,19 +137,24 @@ img {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1rem;
+  gap: 0.25rem 1.25rem;
   margin: 0;
   padding: 0;
 }
 
 .nav-links a {
   color: var(--color-text-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .nav-links a:hover {
   color: var(--color-accent);
   text-decoration: none;
+}
+
+.nav-links a.active {
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 @media (max-width: 700px) {
@@ -139,26 +180,29 @@ img {
 main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 3.5em 1.25rem 4.5rem;
 }
 
 .section {
-  margin-bottom: 2.5rem;
-  scroll-margin-top: 4rem;
+  margin-bottom: 4.5em;
 }
 
-/* --- Profile ------------------------------------------------------------ */
+/* --- Profile / About ------------------------------------------------------ */
 
 .profile {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
+.profile-bio {
+  margin: 0 0 1.2em;
+}
+
 .profile-photo {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
@@ -166,124 +210,255 @@ main {
 
 .profile-body {
   flex: 1;
-  min-width: 15rem;
+  min-width: 0;
 }
 
 .profile-body h1 {
   margin: 0 0 0.2rem;
   font-size: 1.7rem;
+  font-weight: 700;
 }
 
 .profile-role {
-  color: var(--color-text-muted);
-  margin: 0 0 0.75rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin: 0 0 0.9rem;
+  font-size: var(--font-size-base);
 }
 
 .profile-links {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem 1rem;
-  margin: 0.75rem 0 0;
+  gap: 0.4rem 1.25rem;
+  margin: 1rem 0 0;
   padding: 0;
 }
 
-/* --- News ---------------------------------------------------------------- */
+.profile-links a {
+  font-weight: 500;
+}
 
-.news-year h3 {
-  margin: 1rem 0 0.5rem;
-  font-size: 1.05rem;
+/* --- Timelines (Education, Presentations) ---------------------------------
+   Shared vertical-line-with-dots layout. Each entry sets --marker-color
+   (inline, per-entry) to tint its dot and title; entries that don't set it
+   fall back to the theme accent color (e.g. Education's degrees). -------- */
+
+#education h2 {
+  color: var(--color-highlight);
+}
+
+#education-container,
+#talks-container {
+  position: relative;
+  padding-left: 1.85rem;
+}
+
+#education-container::before,
+#talks-container::before {
+  content: "";
+  position: absolute;
+  left: 0.28rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.education-card,
+.presentation-entry {
+  position: relative;
+  margin-bottom: 2.25rem;
+}
+
+.education-card:last-child,
+.presentation-entry:last-child {
+  margin-bottom: 0;
+}
+
+.education-card::before,
+.presentation-entry::before {
+  content: "";
+  position: absolute;
+  left: -1.85rem;
+  top: 0.3rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2.5px solid var(--marker-color, var(--color-accent));
+  transition: background 0.15s ease;
+}
+
+.education-card:hover::before,
+.presentation-entry:hover::before {
+  background: var(--marker-color, var(--color-accent));
+}
+
+.education-date,
+.presentation-date {
+  display: block;
+  margin: 0 0 0.35rem;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--color-text-muted);
 }
 
-.news-year:first-child h3 {
-  margin-top: 0;
+.education-degree,
+.presentation-title {
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-highlight);
 }
 
-.news-list {
-  list-style: none;
+.education-institution,
+.presentation-location {
   margin: 0;
-  padding: 0;
-}
-
-.news-list li {
-  margin-bottom: 0.6rem;
-  padding-left: 0.25rem;
-}
-
-.news-type {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
   color: var(--color-accent);
-  margin-right: 0.4rem;
-}
-
-/* --- Papers (publications + working papers) ------------------------------ */
-
-.paper {
-  padding: 0.85rem 1rem;
-  margin-bottom: 0.75rem;
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-}
-
-.paper-title {
   font-weight: 600;
-  margin: 0 0 0.15rem;
+  font-size: var(--font-size-base);
 }
 
-.paper-authors {
+.presentation-location {
+  margin-top: 0.3rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* --- Entry lists (papers, presentations, ongoing projects) ---------------- */
+
+.paper,
+.item {
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.paper:first-child,
+.item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.paper-title,
+.item-title {
+  margin: 0 0 0.3rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-highlight);
+}
+
+.paper-title a,
+.item-title a {
+  color: var(--color-accent);
+}
+
+.paper-authors,
+.item-meta {
   margin: 0 0 0.15rem;
-  font-size: 0.95rem;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
 }
 
 .paper-venue {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   font-style: italic;
 }
 
+.item-meta {
+  color: var(--color-text-muted);
+}
+
+.item-description {
+  margin: 0.35rem 0 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.item-quote {
+  margin: 0.6rem 0 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 3px solid var(--color-border);
+}
+
+.item-quote-text {
+  margin: 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.item-quote-attribution {
+  margin: 0.35rem 0 0;
+  font-size: var(--font-size-sm);
+  font-style: normal;
+  color: var(--color-text-muted);
+}
+
+/* Ongoing Projects page: title-case black heading, green project titles */
+#projects h2 {
+  color: var(--color-highlight);
+  text-transform: capitalize;
+}
+
+#projects .item-title {
+  color: var(--color-accent);
+}
+
+/* Presentations page: title-case black heading */
+#presentations h2 {
+  color: var(--color-highlight);
+  text-transform: capitalize;
+}
+
+/* Publications page: title-case black heading, gold paper titles */
+#publications h2 {
+  color: var(--color-highlight);
+  text-transform: capitalize;
+}
+
+#publications .paper-title,
+#publications .paper-title a {
+  color: #cd950c;
+}
+
 .paper-links {
-  margin: 0.4rem 0 0;
-  font-size: 0.9rem;
+  margin: 0.5rem 0 0;
+  font-size: var(--font-size-sm);
   display: flex;
   gap: 0.9rem;
   flex-wrap: wrap;
 }
 
-/* --- Generic item lists (talks, software, projects, teaching) ------------ */
+/* --- CV page -------------------------------------------------------------- */
 
-.item {
-  margin-bottom: 1rem;
+#cv-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
 }
 
-.item-title {
-  font-weight: 600;
-  margin: 0;
+.cv-embed {
+  width: 100%;
+  height: 75vh;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
 }
 
-.item-meta {
-  margin: 0;
-  font-size: 0.95rem;
+.cv-placeholder {
   color: var(--color-text-muted);
-}
-
-.item-description {
-  margin: 0.2rem 0 0;
-  font-size: 0.95rem;
 }
 
 /* --- Footer --------------------------------------------------------------- */
 
 .site-footer {
   border-top: 1px solid var(--color-border);
-  padding: 1rem;
+  padding: 1.25rem;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }

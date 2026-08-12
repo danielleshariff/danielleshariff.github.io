@@ -1,16 +1,17 @@
 {
-  "name": "Dr. Jane Placeholder",
-  "title": "Assistant Professor of Something Interesting",
-  "affiliation": "University of Somewhere",
-  "photoPath": "./assets/images/headshot.svg",
+  "name": "Danielle Shariff",
+  "title": "PhD Student",
+  "affiliation": "Department of Political Science, Northeastern University",
+  "photoPath": "./assets/images/headshot.jpg",
+  "cvPath": "./docs/cv.pdf?v=20260811b",
   "bio": [
-    "I am a researcher studying interesting things. My work combines methods from one field with questions from another to understand how the world works.",
-    "Before joining the University of Somewhere, I completed my Ph.D. at Another University, where I was advised by Prof. Great Mentor."
+    "Danielle Shariff is a PhD student in the Department of Political Science at Northeastern University.",
+    "Her ongoing research focuses on the fields of political discourse and social media, with a specific interest in the current U.S. political and civic information ecosystem.",
+    "Currently, Danielle is a Doctoral Research Assistant at the Defense Industrial Base Institute, an active member of the Society for Text & Discourse, and a Research Assistant for Dr. Sunny Yang."
   ],
   "links": [
-    { "label": "Google Scholar", "url": "https://scholar.google.com/" },
-    { "label": "GitHub", "url": "https://github.com/" },
-    { "label": "CV", "url": "./docs/cv.pdf" },
-    { "label": "Email", "url": "mailto:jane@example.edu" }
+    { "label": "Email", "url": "mailto:shariff.da@northeastern.edu" },
+    { "label": "Northeastern Profile", "url": "https://cssh.northeastern.edu/student/danielle-shariff/" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/danielle-shariff-527191222/" }
   ]
 }

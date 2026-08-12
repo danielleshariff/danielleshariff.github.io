@@ -1,20 +1,34 @@
 [
   {
-    "title": "A very important finding about an interesting phenomenon",
-    "authors": "Jane Placeholder, Collaborator One, Collaborator Two",
-    "publication": "Journal of Important Findings",
-    "year": "2025",
-    "url": "https://doi.org/10.0000/example.2025",
-    "pdfPath": "./docs/publications/2025_Placeholder_ImportantFinding/2025_Placeholder_ImportantFinding.pdf",
-    "bibPath": "./docs/publications/2025_Placeholder_ImportantFinding/cite.bib"
+    "title": "Microcosms of the Labor Market: How Universities Sort Students into Specialized vs. Exploratory Co-ops",
+    "authors": "Faith Couts, Enrique Valencia-Lopez, Danielle Shariff, Richard Arum",
+    "publication": "Research Committee 28 on Social Stratification and Mobility (RC28)",
+    "year": "2026"
   },
   {
-    "title": "An earlier study that laid the groundwork",
-    "authors": "Jane Placeholder, Collaborator One",
-    "publication": "Proceedings of the Conference on Groundwork",
-    "year": "2024",
-    "url": "https://doi.org/10.0000/example.2024",
-    "pdfPath": "./docs/publications/2024_Placeholder_EarlierStudy/2024_Placeholder_EarlierStudy.pdf",
-    "bibPath": "./docs/publications/2024_Placeholder_EarlierStudy/cite.bib"
+    "title": "Microcosms of the Labor Market: How Universities Sort Students into Specialized vs. Exploratory Co-ops",
+    "authors": "Faith Couts, Enrique Valencia-Lopez, Danielle Shariff, Richard Arum",
+    "publication": "American Sociological Association",
+    "year": "2026"
+  },
+  {
+    "title": "From Discourse to Dynamics: Understanding Team Interactions Through Temporally Sensitive NLP",
+    "authors": "Seehee Park, Danielle Shariff, Mohammad Amin Samadi, Nia Nixon, Sidney D'Mello",
+    "publication": "Educational Data Mining",
+    "year": "2025",
+    "url": "https://educationaldatamining.org/EDM2025/proceedings/2025.EDM.short-papers.200/2025.EDM.short-papers.200.pdf"
+  },
+  {
+    "title": "Understanding Collaborative Learning Processes and Outcomes Through Student Discourse Dynamics",
+    "authors": "Seehee Park, Nia Nixon, Sidney D'Mello, Danielle Shariff, Jaeyoon Choi",
+    "publication": "Learning Analytics & Knowledge, Association for Computing Machinery",
+    "year": "2025",
+    "url": "https://doi.org/10.1145/3706468.3706547"
+  },
+  {
+    "title": "Balancing the Scales: Using GPT-4 for Robust Data Augmentation",
+    "authors": "Mohammad Amin Samadi, Danielle Shariff, Raymond Ibarra",
+    "publication": "Learning Analytics & Knowledge Conference",
+    "year": "2025"
   }
 ]

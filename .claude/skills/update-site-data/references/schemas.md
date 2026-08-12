@@ -4,6 +4,8 @@ Schemas and examples for every file under `data/`. Optional fields are marked; e
 
 > **Note:** These schemas describe the template as shipped. If the site has been redesigned (via `/setup-site` or manually), the live `data/*.json` files and `js/*.js` renderers are the ground truth. When they diverge from this file, follow the code and update this file to match.
 
+> **Current site structure:** this site is multi-page, not the template's default single scrolling page. `index.html` (About — profile card plus `data/education.json` below it), `projects.html` (Ongoing Projects), `presentations.html` (Presentations — renders `data/talks.json` via `js/talks.js`), `publications.html`, and `cv.html` each have their own HTML file sharing one header/nav/footer (set from `data/profile.json` by `Site.loadChrome()` in `js/utils.js`). `data/news.json`, `data/working_papers.json`, `data/software.json`, and `data/teaching.json` still exist with their renderers but are not currently linked from any page — add a page for one (following the pattern of the existing pages) to bring it back.
+
 ## data/profile.json — name, bio, links
 
 Object. Rendered by `js/profile.js` (also sets the page title, nav name, and footer).
@@ -21,12 +23,30 @@ Object. Rendered by `js/profile.js` (also sets the page title, nav name, and foo
   "links": [
     { "label": "Google Scholar", "url": "https://scholar.google.com/..." },
     { "label": "Email", "url": "mailto:jane@example.edu" }
-  ]
+  ],
+  "cvPath": "./docs/cv.pdf"
 }
 ```
 
 - `bio` is an array of paragraphs.
 - Optional: `photoPath` (omit to render without a photo).
+- Optional: `cvPath` — drives the CV page (`cv.html` / `js/cv.js`): when present, the page embeds the PDF and shows a download button; when absent, it shows a "CV coming soon" placeholder. Drop the PDF at `docs/cv.pdf` and add this field to activate it.
+- `affiliation` is accepted but currently unused by `js/profile.js` — the line under the name renders `title` only (e.g. "PhD Student"), not `title, affiliation`. Keep `affiliation` in the data (harmless) or fold it into `title` if you want it displayed again.
+
+## data/education.json — degrees
+
+Array, newest/current degree first. Rendered by `js/education.js` on the About page as a vertical timeline (a connecting line with a dot per entry; date, degree, institution stacked within each entry).
+
+```json
+{
+  "degree": "Ph.D. in Political Science",
+  "institution": "Northeastern University",
+  "institutionColor": "#CD5555",
+  "dates": "2025 – 2030"
+}
+```
+
+- Optional: `institutionColor` (a hex/CSS color string) — tints that entry's institution name; omit to fall back to the theme's accent color.
 
 ## data/publications.json — published papers
 
@@ -94,7 +114,7 @@ Array of year groups, newest year first; items within a year are newest first. R
 
 ## data/talks.json — talks and presentations
 
-Array, newest first. Rendered by `js/talks.js`.
+Array, newest first. Rendered by `js/talks.js` on `presentations.html` as a vertical timeline (same visual pattern as Education). Each entry's dot and title are colored automatically by the year parsed from `date`: 2021-2025 (UC Irvine era) renders in blue (`#87CEFA`), 2026 onward (Northeastern era) renders in red (`#CD5555`) — see `colorForTalkDate()` in `js/talks.js`. Update that function if the era cutoff or colors ever change.
 
 ```json
 {
@@ -122,14 +142,23 @@ Array. Rendered by `js/software.js`.
 
 ## data/ongoing_projects.json — ongoing projects
 
-Array. Rendered by `js/ongoing_projects.js`.
+Array. Rendered by `js/ongoing_projects.js` on `projects.html`; on that page, titles render in the accent color and the `<h2>` is uppercase black (see `#projects` rules in `css/styles.css`).
 
 ```json
 {
   "title": "A large ongoing research project",
+  "collaborators": "Collaborator: Jane Doe",
+  "quote": {
+    "text": "An epigraph or excerpt relevant to the project.",
+    "attribution": "Author, Source"
+  },
   "description": "A multi-year effort to understand an important phenomenon."
 }
 ```
+
+- Optional: `collaborators` — a short line (e.g. `"Collaborator: ..."` or `"Principal Investigators: ..."`) rendered under the title in muted meta style.
+- Optional: `quote` — renders as an italicized, left-bordered blockquote above the description, with `attribution` shown as an em-dash-prefixed byline. Omit entirely if there's no epigraph.
+- Optional: `description`.
 
 ## data/teaching.json — courses taught
 

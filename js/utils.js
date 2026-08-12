@@ -51,6 +51,21 @@ const Site = {
     return node;
   },
 
+  /** The site owner's name, as it appears in author lists. */
+  OWN_NAME: "Danielle Shariff",
+
+  /**
+   * Highlight the site owner's name within an author list by switching it
+   * to the monospace font and accent color, matching the convention on
+   * matthewdeverna.com (his own utils.js wraps his name the same way).
+   */
+  formatAuthors(authors) {
+    return authors.replace(
+      new RegExp(this.OWN_NAME, "g"),
+      `<code class="accent">${this.OWN_NAME}</code>`
+    );
+  },
+
   /**
    * Render one paper card (shared by publications and working papers).
    * Fields used: title, url, authors, publication, year, pdfPath, bibPath.
@@ -64,7 +79,9 @@ const Site = {
     card.appendChild(title);
 
     if (paper.authors) {
-      card.appendChild(this.el("p", "paper-authors", paper.authors));
+      const authorsEl = this.el("p", "paper-authors");
+      authorsEl.innerHTML = this.formatAuthors(paper.authors);
+      card.appendChild(authorsEl);
     }
 
     const venue = [paper.publication, paper.year].filter(Boolean).join(", ");
@@ -87,10 +104,38 @@ const Site = {
     a.rel = "noopener";
     return a;
   },
+
+  /**
+   * Shared page chrome: sets the nav name and footer text from
+   * data/profile.json, and marks the current page's nav link active
+   * (matched against <body data-page="..."> vs each nav link's data-page).
+   * Runs on every page, independent of which section-specific module
+   * (profile.js, publications.js, etc.) also loads on that page.
+   */
+  async loadChrome() {
+    const profile = await this.fetchJSON("./data/profile.json");
+    if (profile && profile.name) {
+      const navName = document.getElementById("nav-name");
+      if (navName) navName.textContent = profile.name;
+      const footer = document.getElementById("footer-text");
+      if (footer) {
+        footer.textContent = `© ${new Date().getFullYear()} ${profile.name}`;
+      }
+    }
+
+    const currentPage = document.body.dataset.page;
+    if (currentPage) {
+      document.querySelectorAll(".nav-links a").forEach((a) => {
+        if (a.dataset.page === currentPage) a.classList.add("active");
+      });
+    }
+  },
 };
 
-// Mobile nav toggle
 document.addEventListener("DOMContentLoaded", () => {
+  Site.loadChrome();
+
+  // Mobile nav toggle
   const nav = document.querySelector(".site-nav");
   const toggle = document.querySelector(".nav-toggle");
   if (!nav || !toggle) return;

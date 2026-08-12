@@ -69,8 +69,8 @@ Or edit the `data/*.json` files by hand — schemas are documented in
 ## Project structure
 
 ```
-index.html            # page skeleton; sections are filled from data/
-css/styles.css        # minimal default styling (restyled by /setup-site)
+index.html, *.html    # one page per section (or a single scrolling page), filled from data/
+css/styles.css        # site styling (restyled by /setup-site)
 js/                   # one renderer per section + shared utils.js
 data/                 # all site content, one JSON file per section
 docs/publications/    # one directory per paper: PDF + cite.bib
@@ -81,7 +81,7 @@ CLAUDE.md             # conventions Claude Code follows in this repo
 
 ## Need a CV too?
 
-The site links to your CV (see `data/profile.json`) — if you don't have one ready, check out [mrd-cv-template](https://github.com/mr-devs/mrd-cv-template), a simple LaTeX/Overleaf academic CV template, also powered by Claude Code. After it is built, drop the PDF into `docs/cv.pdf`.
+If your site has a CV page, it renders from `cvPath` in `data/profile.json` — if you don't have a CV ready, check out [mrd-cv-template](https://github.com/mr-devs/mrd-cv-template), a simple LaTeX/Overleaf academic CV template, also powered by Claude Code. After it is built, drop the PDF into `docs/cv.pdf` and set `"cvPath": "./docs/cv.pdf"` in `data/profile.json`.
 
 ## Found this useful?
 
