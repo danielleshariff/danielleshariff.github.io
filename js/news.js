@@ -1,25 +1,14 @@
-/** Renders data/news.json (array of year groups, newest first). */
-Site.load("./data/news.json", "news-container", (container, years) => {
-  years.forEach(({ year, items }) => {
-    if (!items || !items.length) return;
-    const group = Site.el("div", "news-year");
-    group.appendChild(Site.el("h3", null, year));
+/** Renders data/news.json (array of news items, newest first) as a dated list. */
+Site.load("./data/news.json", "news-container", (container, items) => {
+  items.forEach(({ date, text, link }) => {
+    const item = Site.el("div", "news-item");
+    if (date) item.appendChild(Site.el("span", "news-date", date));
 
-    const list = Site.el("ul", "news-list");
-    items.forEach(({ type, htmltext }) => {
-      const li = document.createElement("li");
-      if (type) li.appendChild(Site.el("span", "news-type", type));
-      const span = document.createElement("span");
-      // htmltext is trusted site-owner content from data/news.json
-      span.innerHTML = htmltext;
-      span
-        .querySelectorAll("a")
-        .forEach((a) => a.setAttribute("rel", "noopener"));
-      li.appendChild(span);
-      list.appendChild(li);
-    });
+    const textEl = Site.el("span", "news-text");
+    if (link) textEl.appendChild(Site.link(link, text));
+    else textEl.textContent = text;
+    item.appendChild(textEl);
 
-    group.appendChild(list);
-    container.appendChild(group);
+    container.appendChild(item);
   });
 });

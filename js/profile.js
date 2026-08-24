@@ -10,6 +10,13 @@ Site.load("./data/profile.json", "profile-container", (container, profile) => {
   }
 
   const body = Site.el("div", "profile-body");
+
+  if (profile.researchInterests && profile.researchInterests.length) {
+    body.appendChild(
+      Site.el("p", "profile-eyebrow", profile.researchInterests.join(" · "))
+    );
+  }
+
   body.appendChild(Site.el("h1", null, profile.name || ""));
 
   if (profile.title) body.appendChild(Site.el("p", "profile-role", profile.title));

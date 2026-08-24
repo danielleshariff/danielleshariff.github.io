@@ -1,8 +1,8 @@
 [
   {
     "title": "Media Bias Measures Index",
-    "collaborators": "Collaborator: Sol Nottage",
-    "description": "At the Summer Institute in Computational Social Science (SICSS-Stanford), we are developing an index of news media bias indicators for English and Spanish corpora - the goal is a program that automates the evaluation of bias in news coverage. This project started in the hopes of making computational methods more permeable and accessible for social scientists."
+    "collaborators": "Collaborators: Sol Nottage and Fazli Salim",
+    "description": "At SICSS-Stanford, we developed ReHumanizePy - a multidimensional media bias tool to measure dehumanizing discourse. We collect established measures into a single reproducible pipeline and then introduce four novel measures of bias - elite bias, source embeddedness, omission of source attribution, and gender and racial slant. This project started in the hopes of making computational methods more permeable and accessible."
   },
   {
     "title": "Motivated Reframing Study",
@@ -19,6 +19,6 @@
   },
   {
     "title": "News Media and the Production of Elite Status in America",
-    "description": "The following study examines how American news media constitutes elite status through the structure and content of coverage. Drawing on a corpus of news articles from twelve news outlets spanning 2016–2026, I construct a two-mode network connecting elite actors to news organizations. Using named entity recognition, sentiment analysis, and stance detection, I map which elites get covered, how they are framed, and whether ideological outlet identity shapes both. The results speak to a broader theoretical argument in news media analysis that news visibility does not only reflect status but actively reproduces it."
+    "description": "The following study examines how American news media constitutes elite status through the structure and content of coverage. Drawing on a corpus of news articles from twelve news outlets spanning 2016–2026, we map elite visibility during Trump administrations I and II. The results speak to a broader theoretical argument in news media analysis that news visibility does not only reflect status but actively reproduces it."
   }
 ]

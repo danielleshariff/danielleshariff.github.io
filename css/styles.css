@@ -19,7 +19,7 @@
   --font-size-sm: 0.875rem;
   --font-size-base: 0.9375rem;
   --font-size-heading: 1.0625rem;
-  --max-width: 45rem;
+  --max-width: 54rem;
   --font-body: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
 }
@@ -60,6 +60,14 @@ h2 {
   font-weight: 700;
   color: var(--color-accent);
   margin: 0 0 1.75rem;
+}
+
+.section-note {
+  margin: -1.25rem 0 1.5rem;
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 img {
@@ -213,10 +221,21 @@ main {
   min-width: 0;
 }
 
+.profile-eyebrow {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
 .profile-body h1 {
   margin: 0 0 0.2rem;
   font-size: 1.7rem;
   font-weight: 700;
+  font-family: "Times New Roman", Georgia, serif;
 }
 
 .profile-role {
@@ -240,12 +259,18 @@ main {
 }
 
 /* --- Timelines (Education, Presentations) ---------------------------------
-   Shared vertical-line-with-dots layout. Each entry sets --marker-color
-   (inline, per-entry) to tint its dot and title; entries that don't set it
-   fall back to the theme accent color (e.g. Education's degrees). -------- */
+   Shared vertical-line-with-dots layout. Education entries set --marker-color
+   (inline, per-entry) to tint their dot by institution; entries that don't
+   set it (all Presentations entries) fall back to the theme accent color. */
 
 #education h2 {
   color: var(--color-highlight);
+  font-family: "Times New Roman", Georgia, serif;
+}
+
+#news h2 {
+  color: var(--color-highlight);
+  font-family: "Times New Roman", Georgia, serif;
 }
 
 #education-container,
@@ -314,6 +339,16 @@ main {
   color: var(--color-highlight);
 }
 
+.presentation-title {
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.presentation-date,
+.presentation-location {
+  font-family: "Times New Roman", Georgia, serif;
+}
+
 .education-institution,
 .presentation-location {
   margin: 0;
@@ -348,6 +383,16 @@ main {
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--color-highlight);
+}
+
+.paper-title {
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 1.25rem;
+}
+
+#publications .paper-authors,
+#publications .paper-venue {
+  font-family: "Times New Roman", Georgia, serif;
 }
 
 .paper-title a,
@@ -398,26 +443,60 @@ main {
   color: var(--color-text-muted);
 }
 
+/* --- News ------------------------------------------------------------- */
+
+.news-item {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.news-item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.news-date {
+  flex-shrink: 0;
+  width: 6.5rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.news-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
 /* Ongoing Projects page: title-case black heading, green project titles */
 #projects h2 {
   color: var(--color-highlight);
   text-transform: capitalize;
+  font-family: "Times New Roman", Georgia, serif;
 }
 
 #projects .item-title {
   color: var(--color-accent);
 }
 
-/* Presentations page: title-case black heading */
+/* Presentations page: title-case black heading, green talk titles */
 #presentations h2 {
   color: var(--color-highlight);
   text-transform: capitalize;
+  font-family: "Times New Roman", Georgia, serif;
+}
+
+#presentations .presentation-title {
+  color: var(--color-accent);
 }
 
 /* Publications page: title-case black heading, gold paper titles */
 #publications h2 {
   color: var(--color-highlight);
   text-transform: capitalize;
+  font-family: "Times New Roman", Georgia, serif;
 }
 
 #publications .paper-title,

@@ -4,7 +4,7 @@ Schemas and examples for every file under `data/`. Optional fields are marked; e
 
 > **Note:** These schemas describe the template as shipped. If the site has been redesigned (via `/setup-site` or manually), the live `data/*.json` files and `js/*.js` renderers are the ground truth. When they diverge from this file, follow the code and update this file to match.
 
-> **Current site structure:** this site is multi-page, not the template's default single scrolling page. `index.html` (About — profile card plus `data/education.json` below it), `projects.html` (Ongoing Projects), `presentations.html` (Presentations — renders `data/talks.json` via `js/talks.js`), `publications.html`, and `cv.html` each have their own HTML file sharing one header/nav/footer (set from `data/profile.json` by `Site.loadChrome()` in `js/utils.js`). `data/news.json`, `data/working_papers.json`, `data/software.json`, and `data/teaching.json` still exist with their renderers but are not currently linked from any page — add a page for one (following the pattern of the existing pages) to bring it back.
+> **Current site structure:** this site is multi-page, not the template's default single scrolling page. `index.html` (About — profile card, then `data/education.json` via `js/education.js`, then `data/news.json` via `js/news.js`, in that order), `projects.html` (Ongoing Projects), `presentations.html` (Presentations — renders `data/talks.json` via `js/talks.js`), `publications.html`, and `cv.html` each have their own HTML file sharing one header/nav/footer (set from `data/profile.json` by `Site.loadChrome()` in `js/utils.js`). News does not have its own nav entry/page — it's a section on the About page, below Education. `data/working_papers.json`, `data/software.json`, and `data/teaching.json` still exist with their renderers but are not currently linked from any page — add a page for one (following the pattern of the existing pages) to bring it back.
 
 ## data/profile.json — name, bio, links
 
@@ -16,13 +16,14 @@ Object. Rendered by `js/profile.js` (also sets the page title, nav name, and foo
   "title": "Assistant Professor of Something Interesting",
   "affiliation": "University of Somewhere",
   "photoPath": "./assets/images/headshot.svg",
+  "researchInterests": ["Political Communication", "Computational Methods", "Human Rights"],
   "bio": [
     "First paragraph of the bio.",
     "Second paragraph of the bio."
   ],
   "links": [
     { "label": "Google Scholar", "url": "https://scholar.google.com/..." },
-    { "label": "Email", "url": "mailto:jane@example.edu" }
+    { "label": "jane [at] example.edu", "url": "mailto:jane@example.edu" }
   ],
   "cvPath": "./docs/cv.pdf"
 }
@@ -30,6 +31,8 @@ Object. Rendered by `js/profile.js` (also sets the page title, nav name, and foo
 
 - `bio` is an array of paragraphs.
 - Optional: `photoPath` (omit to render without a photo).
+- Optional: `researchInterests` — array of short phrases rendered above the name as an all-caps, dot-separated eyebrow line (styled via `.profile-eyebrow`); omit to hide it. Keep entries in normal title case in the JSON — CSS handles the uppercase transform.
+- A link's `label` renders as-is (no obfuscation logic), so for an email link write the human-readable "[at]" form directly in `label` (e.g. `"jane [at] example.edu"`) if you want it easy to read/copy while `url` keeps the real `mailto:` address.
 - Optional: `cvPath` — drives the CV page (`cv.html` / `js/cv.js`): when present, the page embeds the PDF and shows a download button; when absent, it shows a "CV coming soon" placeholder. Drop the PDF at `docs/cv.pdf` and add this field to activate it.
 - `affiliation` is accepted but currently unused by `js/profile.js` — the line under the name renders `title` only (e.g. "PhD Student"), not `title, affiliation`. Keep `affiliation` in the data (harmless) or fold it into `title` if you want it displayed again.
 
@@ -88,33 +91,23 @@ Array, newest first. Rendered by `js/working_papers.js`.
 
 ## data/news.json — news items
 
-Array of year groups, newest year first; items within a year are newest first. Rendered by `js/news.js`.
+Array, newest first. Rendered by `js/news.js` on the About page (`index.html`), below Education, as a dated list (`.news-date` + `.news-text`, flat/unbulleted). The section shows "Recent and upcoming" as a `.section-note` under the "News" heading (rendered fully uppercase via CSS, source text stays normal case), borrowed from yingdanlu.com's News section.
 
 ```json
 {
-  "year": "2026",
-  "items": [
-    {
-      "type": "Preprint",
-      "htmltext": "New preprint: <a href='https://doi.org/...' target='_blank'>Paper Title</a>."
-    }
-  ]
+  "date": "August 2026",
+  "text": "Participated at the Summer Institute in Computational Social Sciences at Stanford University.",
+  "link": "https://example.edu"
 }
 ```
 
-- `type` is one of: `Publication`, `Preprint`, `Talk`, `Award`, `Media`, `Tool`, `General`.
-- `htmltext` conventions: single-quoted HTML attributes; links as `<a href='URL' target='_blank'>`; `<em>` for venues; `<code>` for software names. 1–2 sentences, professional tone, emojis only for big milestones.
-- Per-type patterns:
-  - Publication: `Our paper <a>Title</a> was published in <em>Journal</em>.`
-  - Preprint: just the linked title: `New preprint: <a>Title</a>.`
-  - Talk: `Gave an invited talk at <a>Event</a>...` or `...accepted for a poster/talk at <a>Conf</a>.`
-  - Award: `Honored to receive [award] from <a>Org</a>.`
-  - Media: `<a>Outlet</a> covered our paper <a>Title</a>.`
-  - Tool: `Created <a><code>name</code></a> — description.`
+- `date` is a free-form string (e.g. `"August 2026"`); shown in a fixed-width muted column to the left of `text`.
+- `text` is plain text, 1 sentence, professional tone.
+- Optional: `link` — when present, the whole `text` becomes a link (opens in a new tab); omit for a plain unlinked entry.
 
 ## data/talks.json — talks and presentations
 
-Array, newest first. Rendered by `js/talks.js` on `presentations.html` as a vertical timeline (same visual pattern as Education). Each entry's dot and title are colored automatically by the year parsed from `date`: 2021-2025 (UC Irvine era) renders in blue (`#87CEFA`), 2026 onward (Northeastern era) renders in red (`#CD5555`) — see `colorForTalkDate()` in `js/talks.js`. Update that function if the era cutoff or colors ever change.
+Array, newest first. Rendered by `js/talks.js` on `presentations.html` as a vertical timeline (same visual pattern as Education). All entries render in the theme's green accent color (dot and title) — see `#presentations .presentation-title` in `css/styles.css`.
 
 ```json
 {

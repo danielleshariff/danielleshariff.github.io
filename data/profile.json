@@ -2,6 +2,7 @@
   "name": "Danielle Shariff",
   "title": "PhD Student",
   "affiliation": "Department of Political Science, Northeastern University",
+  "researchInterests": ["Political Communication", "Computational Methods", "Human Rights"],
   "photoPath": "./assets/images/headshot.jpg",
   "cvPath": "./docs/cv.pdf?v=20260811b",
   "bio": [
@@ -10,7 +11,7 @@
     "Currently, Danielle is a Doctoral Research Assistant at the Defense Industrial Base Institute, an active member of the Society for Text & Discourse, and a Research Assistant for Dr. Sunny Yang."
   ],
   "links": [
-    { "label": "Email", "url": "mailto:shariff.da@northeastern.edu" },
+    { "label": "shariff.da [at] northeastern.edu", "url": "mailto:shariff.da@northeastern.edu" },
     { "label": "Northeastern Profile", "url": "https://cssh.northeastern.edu/student/danielle-shariff/" },
     { "label": "LinkedIn", "url": "https://www.linkedin.com/in/danielle-shariff-527191222/" }
   ]
